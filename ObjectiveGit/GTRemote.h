@@ -130,6 +130,13 @@ typedef enum {
 /// adding the refspec or saving the remote failed.
 - (BOOL)addFetchRefspec:(NSString *)fetchRefspec error:(NSError **)error;
 
+/// Delete this remote.
+///
+/// error - Will be set if an error occurs.
+///
+/// Returns YES if this remote was successfully removed, NO and an error
+- (BOOL)deleteWithError:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

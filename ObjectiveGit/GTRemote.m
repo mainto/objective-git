@@ -219,4 +219,17 @@ NSString * const GTRemoteRenameProblematicRefSpecs = @"GTRemoteRenameProblematic
 	return YES;
 }
 
+#pragma mark Delete the remote
+
+- (BOOL)deleteWithError:(NSError **)error {
+	int gitError = git_remote_delete(self.repository.git_repository, self.name.UTF8String);
+	if (gitError != GIT_OK) {
+		if (error != NULL) *error = [NSError git_errorFor:gitError description:@"Failed to delete remote %@", self.name];
+		
+		return NO;
+	}
+	
+	return YES;
+}
+
 @end
